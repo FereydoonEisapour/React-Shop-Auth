@@ -19,10 +19,10 @@ const Products = () => {
     }, [])
     return (
         <div className='col-12'>
-            <Sidebar
+            {/* <Sidebar
                 className="col-4 d-block d-md-none"
                 placement="bottom"
-                name="search" />
+                name="search" /> */}
             <div className="d-flex row  justify-content-center ">
                 {phones ? phones.map(item =>
                     <ProductItem

@@ -2,11 +2,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Add from './Add';
 import './Assets/Styles/App.css';
-import Cart from './Pages/Cart';
-import Details from './Components/Details';
-import Header from './Components/Header';
-import Products from './Pages/Products'
-import Login from './Pages/Login';
+import { Header } from './Components'
+import { Cart, Details, Products, Login } from './Pages'
+
 function App() {
   return (
     <>
