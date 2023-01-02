@@ -1,9 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+}
 .App{
     background-color: #ebf2f9;
     padding-bottom: 200px;
     height: max-content;
     min-height: 100vh;
   }
-  .bg-light{
-    background-color: #ffffff;
+  .bg-white{
+    background-color: #ffffff !important;
+  }
+
+
+
+  
+  .card-img {
+    position: relative;
+    height: 264px;
+    margin-top: 15px;
+  }
+  .card-img img {
+    position: absolute;
+    width: 100%;
+    
+  }
+  
+  .skeleton {
+    background-color: #e2e5e7;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-size: 40px 100%;
+    background-repeat: no-repeat;
+    background-position: left -40px top 0;
+    -webkit-animation: shine 1s ease infinite;
+            animation: shine 1s ease infinite;
+  }
+  
+  @-webkit-keyframes shine {
+    to {
+      background-position: right -40px top 0;
+    }
+  }
+  
+  @keyframes shine {
+    to {
+      background-position: right -40px top 0;
+    }
+  }
+
+  .skeleton-img{
+    height: 250px;
+    margin: 18px;
+  }
+  .skeleton-text{
+    height: 15px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
   }
