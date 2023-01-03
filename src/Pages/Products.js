@@ -1,4 +1,4 @@
-import React, {  } from 'react'
+import React, { } from 'react'
 import { ProductItem, Sidebar } from '../Components'
 import { dbPhones } from '../Data/data'
 
@@ -24,16 +24,20 @@ const Products = () => {
                 placement="bottom"
                 name="search" /> */}
             <div className="d-flex row  justify-content-center col-12  ">
-    
+
                 {phones ? phones.map(item =>
                     <ProductItem
-                    key={item.id}
-                    id={item.id}
-                    img={item.img}
-                    title={item.title}
-                    price={item.price}
+                        key={item.id}
+                        id={item.id}
+                        img={item.img}
+                        title={item.title}
+                        price={item.price}
                     />
-                ) : "LOGDING"}
+                ) :
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                }
 
             </div>
         </div>

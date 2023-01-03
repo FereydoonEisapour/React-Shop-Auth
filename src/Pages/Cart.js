@@ -6,7 +6,7 @@ import { CartItem, TotalCart } from '../Components'
 import { dbUserCart } from '../Data/data'
 
 const Cart = () => {
- // const { id } = useParams()
+  // const { id } = useParams()
   const { user } = useAuthState()
   const [inCart, setInCart] = React.useState([])
 
@@ -24,20 +24,34 @@ const Cart = () => {
       })
     }
   }, [user])
+  console.log(inCart);
   return (
     <>
       {user ?
         <div className="container d-flex row">
-          <div className="col-12 col-md-8 ">
-            {inCart.map(item => <CartItem
-              key={item.id}
-              id={item.id}
-              img={item.img}
-              title={item.title}
-              price={item.price}
-              count={item.count}
-            />)}
-          </div>
+          {
+            inCart.length ?
+              (
+                <div className="col-12 col-md-8 ">
+                  {inCart.map(item => <CartItem
+                    key={item.id}
+                    id={item.id}
+                    img={item.img}
+                    title={item.title}
+                    price={item.price}
+                    count={item.count}
+                  />)}
+                </div>
+              ) :
+              (
+                <div className="col-12  d-flex justify-content-center">
+                  <div className="col-10 text-center bg-light ">
+                    <div className="">your cart is empty</div>
+                  </div>
+                </div>
+              )
+          }
+
           <div className="col-12  col-md-4">
             {inCart.length > 0 ? <TotalCart /> : ""}
           </div>

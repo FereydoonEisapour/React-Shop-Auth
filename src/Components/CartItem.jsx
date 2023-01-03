@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
 import { dbUserCartId } from '../Data/data'
+// import ImgSkeleton from './ImgSkeleton'
 const CartItem = ({ img, title, price, id, count }) => {
     const { user } = useAuthState()
     const [cartItemCount, setCartItemCount] = React.useState(count)
@@ -28,11 +29,14 @@ const CartItem = ({ img, title, price, id, count }) => {
         setCartItemCount(0)
         dbUserCartId(user, id).delete()
     }
+
     return (
         <div className="container bg-white mb-2 rounded-3">
+     
             <div className="row  d-flex ">
                 <div className="col-4 d-flex align-items-center ">
-                    <img className="col-11 p-2" src={img} alt="" />
+             <img className="col-11 p-2" src={img} alt="" /> 
+                    {/* <ImgSkeleton className="col-11 p-2" img={img} /> */}
                 </div>
                 <div className="col-8 d-flex row ">
                     <div className="">

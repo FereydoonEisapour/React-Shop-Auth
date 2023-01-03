@@ -48,7 +48,12 @@ const Details = () => {
                     </div>
                 </div >
                 :
-                <div className="container h-100">Loading</div>}
+                <div className="container d-flex text-center justify-content-around ">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            }
         </>
     );
 };

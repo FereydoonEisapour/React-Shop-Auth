@@ -20,7 +20,7 @@ function useAuthDispatch() {
   return context;
 }
 const initialState = {
-  user: { email: 'epfereydoon@gmail.com' },
+  user: null,
   userEmail: null,
   error: null,
   status: false,
