@@ -4,30 +4,30 @@ import { useAuthState } from '../Contexts/AuthContext'
 import { dbUserCartId } from '../Data/data'
 // import ImgSkeleton from './ImgSkeleton'
 const CartItem = ({ img, title, price, id, count }) => {
-    const { user } = useAuthState()
+    const { userEmail } = useAuthState()
     const [cartItemCount, setCartItemCount] = React.useState(count)
     React.useEffect(() => {
-        dbUserCartId(user, id).onSnapshot(snapshot => {
+        dbUserCartId(userEmail, id).onSnapshot(snapshot => {
             if (snapshot.data() !== undefined) {
                 setCartItemCount(snapshot.data().count)
             }
         })
-    }, [id, user])
+    }, [id, userEmail])
 
     const cartItemInc = () => {
-        dbUserCartId(user, id).set({
+        dbUserCartId(userEmail, id).set({
             count: cartItemCount + 1
         }, { merge: true })
     }
     const cartItemDec = () => {
-        dbUserCartId(user, id).set({
+        dbUserCartId(userEmail, id).set({
             count: cartItemCount - 1
         }, { merge: true })
     }
 
     const deleteCartItem = () => {
         setCartItemCount(0)
-        dbUserCartId(user, id).delete()
+        dbUserCartId(userEmail, id).delete()
     }
 
     return (
@@ -39,14 +39,14 @@ const CartItem = ({ img, title, price, id, count }) => {
                     {/* <ImgSkeleton className="col-11 p-2" img={img} /> */}
                 </div>
                 <div className="col-8 d-flex row ">
-                    <div className="">
+                    <div className=" mt-3">
                         <Link to="/details" className="text-decoration-none text-dark fw-bold ">
                             <span>{title}</span>
                         </Link>
                     </div>
                     <div className=" ">
                         <span className='fw-bold '> Price :</span>
-                        <span className='fw-bold px-2'>{price}</span> $
+                        <span className='fw-bold px-1'>{price}</span> $
                     </div>
 
                     <div className=" ">
@@ -54,22 +54,22 @@ const CartItem = ({ img, title, price, id, count }) => {
                             <button
                                 onClick={deleteCartItem}
                                 className="badge text-primary border-0  p-2 bg-white text-dark"
-                                style={{ fontSize: "1.2rem" }} >
+                                style={{ fontSize: "0.8rem" }} >
                                 ❌
                             </button>
                             :
                             <button
                                 onClick={cartItemDec}
                                 className="badge text-primary border-0  p-2 bg-white text-dark"
-                                style={{ fontSize: "1.2rem" }} >
+                                style={{ fontSize: "0.8rem" }} >
                                 ➖
                             </button>}
 
-                        <span className="h3 text-primary "> {cartItemCount} </span>
+                        <span className="h4 text-primary "> {cartItemCount} </span>
                         <button
                             onClick={cartItemInc}
                             className="badge text-primary border-0  p-2 bg-white text-dark"
-                            style={{ fontSize: "1.2rem" }}  >
+                            style={{ fontSize: "0.8rem" }}  >
                             ➕
                         </button>
                     </div>

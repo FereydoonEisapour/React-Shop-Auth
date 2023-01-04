@@ -9,18 +9,18 @@ const AddButton = ({ title, price, img }) => {
   const [added, setAdded] = React.useState("");
   const [disabled, setDisabled] = React.useState(Boolean);
   const { id } = useParams();
-  const { user } = useAuthState();
+  const { userEmail } = useAuthState();
 
   const buttonClick = () => {
-    if (user) {
-      dbUserCart(user).add({ id: id, title, price, img, count: 1 });
+    if (userEmail) {
+      dbUserCart(userEmail).add({ id: id, title, price, img, count: 1 });
     }
     setDisabled(true);
     setClicked("clicked");
   };
   React.useEffect(() => {
-    if (user) {
-      dbUserCart(user)
+    if (userEmail) {
+      dbUserCart(userEmail)
         .where("id", "==", id)
         .onSnapshot((snapshot) => {
           if (typeof snapshot.docs[0] === "undefined") {
@@ -34,10 +34,10 @@ const AddButton = ({ title, price, img }) => {
           }
         });
     }
-  }, [id, user]);
+  }, [id, userEmail]);
   return (
     <>
-      {user ? (
+      {userEmail ? (
         <button
           className={`cart-button  ${clicked} ${added}`}
           onClick={buttonClick}

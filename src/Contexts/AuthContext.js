@@ -1,6 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
 import { auth } from "../Data/Firebase";
+import { getCookie, removeCookie, setCookies } from "../hooks/cookies";
 
 const AuthStateContext = React.createContext();
 const AuthDispatchContext = React.createContext();
@@ -41,6 +42,8 @@ function doSingUp(dispatch, emailInput, passwordInput) {
       dispatch({
         user: result.user,
       });
+      removeCookie('user')
+      setCookies('user', result.user.email)
     })
     .catch((error) => {
       if (error.code === "auth/email-already-in-use") {
@@ -55,6 +58,8 @@ function doLogIn(dispatch, emailInput, passwordInput) {
         user: result.user,
         userEmail: result.user.email
       });
+      removeCookie('user')
+      setCookies('user', result.user.email)
     })
     .catch((error) => {
       if (error.code === "auth/user-not-found") {
@@ -67,10 +72,23 @@ function resetPass(dispatch, emailInput) {
     .then(() => {
       toast.success("We send reset password link to your Mail");
     })
+    .then(removeCookie('user'))
     .catch((error) => {
       toast.error(error.code);
       console.log(error);
     });
 }
-
-export { AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass };
+if (getCookie !== "") {
+  initialState.userEmail = getCookie('user')
+}
+//function doLoginCookie(dispatch, userCookie) {
+// initialState.userEmail = userCookie
+// dispatch({
+//   // user: userCookie,
+//   userEmail: userCookie
+// })
+//}
+export {
+  AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass
+  //  ,doLoginCookie
+};

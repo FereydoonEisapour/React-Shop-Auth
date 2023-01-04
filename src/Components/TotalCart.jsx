@@ -2,17 +2,17 @@ import React from 'react'
 import { useAuthState } from '../Contexts/AuthContext'
 import { dbUserCart } from '../Data/data'
 const TotalCart = () => {
-    const { user } = useAuthState()
+    const { userEmail } = useAuthState()
     const [inCartPrice, setInCartPrice] = React.useState([])
     React.useEffect(() => {
-        if (user) {
-            dbUserCart(user).onSnapshot(snapshot => {
+        if (userEmail) {
+            dbUserCart(userEmail).onSnapshot(snapshot => {
                 setInCartPrice(snapshot.docs.map((doc) => ({
                     total: doc.data().price * doc.data().count
                 })))
             })
         }
-    }, [user])
+    }, [userEmail])
 
     const initialValue = 0;
     const inCartTotalsPirce = inCartPrice.reduce(

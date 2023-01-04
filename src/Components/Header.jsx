@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuthState } from "../Contexts/AuthContext";
 import "./../Assets/Styles/Cart.css";
 const Header = () => {
-  const { user } = useAuthState();
+  const { userEmail } = useAuthState();
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
@@ -20,7 +20,7 @@ const Header = () => {
             </Link>
           </Nav>
           <>
-            {user ? (
+            {userEmail ? (
               <NavDropdown title="Profile" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#">Dashboard</NavDropdown.Item>
                 <NavDropdown.Item href="#">Logout</NavDropdown.Item>

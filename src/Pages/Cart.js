@@ -7,12 +7,12 @@ import { dbUserCart } from '../Data/data'
 
 const Cart = () => {
   // const { id } = useParams()
-  const { user } = useAuthState()
+  const { userEmail } = useAuthState()
   const [inCart, setInCart] = React.useState([])
 
   React.useEffect(() => {
-    if (user) {
-      dbUserCart(user).onSnapshot(snapshot => {
+    if (userEmail) {
+      dbUserCart(userEmail).onSnapshot(snapshot => {
         setInCart(snapshot.docs.map((doc) => ({
           id: doc.id,
           title: doc.data().title,
@@ -23,11 +23,11 @@ const Cart = () => {
 
       })
     }
-  }, [user])
-  console.log(inCart);
+  }, [userEmail])
+
   return (
     <>
-      {user ?
+      {userEmail ?
         <div className="container d-flex row">
           {
             inCart.length ?

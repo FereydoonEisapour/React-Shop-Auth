@@ -10,12 +10,12 @@ export const dbPhoneId = (id) => {
     return dbPhoneId
 }
 
-export const dbUserCart = (user) => {
-    const dbUserCart = db.collection(user.email).doc(user.email).collection('cart')
+export const dbUserCart = (userEmail) => {
+    const dbUserCart = db.collection(userEmail).doc(userEmail).collection('cart')
     return dbUserCart
 }
 
-export const dbUserCartId = (user, id) => {
-    const dbUserCartId = db.collection(user.email).doc(user.email).collection('cart').doc(id)
+export const dbUserCartId = (userEmail, id) => {
+    const dbUserCartId = db.collection(userEmail).doc(userEmail).collection('cart').doc(id)
     return dbUserCartId
 }
