@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
 import { dbUserCartId } from '../Data/data'
+import './../Assets/Styles/Cart.css'
 // import ImgSkeleton from './ImgSkeleton'
 const CartItem = ({ img, title, price, id, count }) => {
     const { userEmail } = useAuthState()
