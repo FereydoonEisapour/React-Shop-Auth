@@ -12,9 +12,9 @@ const ImgSkeleton = ({ img, title, style }) => {
   return (
     <>
       {imgSrc ? (
-        <img className=" card-img-top p-2 " src={imgSrc} alt={title} />
+        <img className={`card-img-top p-2 `} src={imgSrc} alt={title} />
       ) : (
-        <div className="card-img card-img-top  skeleton"></div>
+        <div className={`${style} skeleton`}></div>
       )}
     </>
   );

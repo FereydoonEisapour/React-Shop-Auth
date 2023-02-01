@@ -32,6 +32,7 @@ const Products = () => {
                         img={item.img}
                         title={item.title}
                         price={item.price}
+                        
                     />
                 ) :
                     <div class="spinner-border text-primary" role="status">

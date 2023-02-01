@@ -23,7 +23,7 @@ const Details = () => {
                         </div>
                         <div className="col-12 col-sm-12 col-md-7 col-lg-7 mt-4 p-3">
                             <div className="">
-                                <h3>{details.title}</h3>
+                                <h4>{details.title}</h4>
                             </div>
                             <div className=" d-none d-md-block">
                                 Made By : <span className="h4">{details.company}</span>
@@ -35,9 +35,9 @@ const Details = () => {
                                 </div>
                             </div>
                             <div className="my-3">
-                                <h4>Price :{details.price} $</h4>{" "}
+                                <h5>Price :{details.price} $</h5>{" "}
                             </div>
-                            <div className="">
+                            <div className="text-center">
                                 <AddButton
                                     title={details.title}
                                     price={details.price}
