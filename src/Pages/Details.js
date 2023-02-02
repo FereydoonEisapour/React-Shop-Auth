@@ -16,8 +16,8 @@ const Details = () => {
     return (
         <>
             {details ?
-                <div className="container">
-                    <div className="row m-3  bg-white rounded-3">
+                <div className="container cart-background text-color rounded-5">
+                    <div className="row m-3   rounded-3">
                         <div className=" col-12 col-sm-11 col-md-5 col-lg-5 p-4 ">
                             <ImgSkeleton img={details.img} />
                         </div>

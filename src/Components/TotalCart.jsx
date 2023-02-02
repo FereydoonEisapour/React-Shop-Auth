@@ -20,7 +20,7 @@ const TotalCart = () => {
         initialValue
     );
     return (
-        <div className='bg-white py-4 rounded-3 text-center fw-bold'>
+        <div className='cart-background text-color py-4 rounded-3 text-center fw-bold'>
             <div className=''>{inCartTotalsPirce}  $</div>
             <div className="btn btn-primary mt-3">Checkout</div>
         </div>

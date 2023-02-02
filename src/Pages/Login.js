@@ -32,17 +32,17 @@ const Login = () => {
   }
   if (userEmail) return <Navigate to="/" />;
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 col-12">
-      <div className="form  col-11 col-md-6 col-lg-4 bg-light p-3 m-3">
-        <div className="inputs d-flex justify-content-center row  m-4">
-          <label htmlFor="email">Email</label>
+    <div className="d-flex justify-content-center align-items-center vh-100 col-12 container-content">
+      <div className="form  col-11 col-md-6 col-lg-4 bg-light p-3 m-3  ">
+        <div className="inputs d-flex justify-content-center row  m-4 ">
+          <label htmlFor="email" className="text-color">Email</label>
           <input
             className="m-2 p-1"
             type="email"
             name="email"
             onChange={(e) => emailInputHandler(e)}
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="text-color">Password</label>
           <input
             className="m-2 p-1"
             type="password"

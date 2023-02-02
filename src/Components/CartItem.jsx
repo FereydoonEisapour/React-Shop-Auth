@@ -33,7 +33,7 @@ const CartItem = ({ img, title, price, id, count }) => {
     }
 
     return (
-        <div className="container bg-white mb-2 rounded-3">
+        <div className="container cart-background text-color mb-2 rounded-3">
 
             <div className="row  d-flex ">
                 <div className="col-4 d-flex align-items-center ">
@@ -42,7 +42,7 @@ const CartItem = ({ img, title, price, id, count }) => {
                 </div>
                 <div className="col-8 d-flex row ">
                     <div className=" mt-3">
-                        <Link to="/details" className="text-decoration-none text-dark fw-bold ">
+                        <Link to="/details" className="text-decoration-none  fw-bold text-color">
                             <span>{title}</span>
                         </Link>
                     </div>
