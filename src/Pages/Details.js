@@ -1,17 +1,20 @@
 import React, { } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
-import { AddButton } from "../Components";
-import {ImgSkeleton} from "../Components";
+import { AddButton, Loading } from "../Components";
+import { ImgSkeleton } from "../Components";
 import { dbPhoneId } from "../Data/data";
 const Details = () => {
     const { id } = useParams()
+    const navigate = useNavigate();
     const [details, setDetails] = React.useState()
+
     React.useEffect(() => {
         dbPhoneId(id).onSnapshot(snapshot => {
             setDetails(snapshot.data())
+            if (snapshot.data() === undefined) navigate('*')
         })
-    }, [id])
+    }, [id, navigate])
 
     return (
         <>
@@ -49,9 +52,7 @@ const Details = () => {
                 </div >
                 :
                 <div className="container d-flex text-center justify-content-around ">
-                    <div className="spinner-border text-primary" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
+                    <Loading />
                 </div>
             }
         </>

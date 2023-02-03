@@ -78,6 +78,12 @@ function resetPass(dispatch, emailInput) {
       console.log(error);
     });
 }
+function doLogOut(dispatch) {
+  dispatch({
+    userEmail: null
+  })
+  removeCookie('user')
+}
 if (getCookie !== "") {
   initialState.userEmail = getCookie('user')
 }
@@ -89,6 +95,6 @@ if (getCookie !== "") {
 // })
 //}
 export {
-  AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass
+  AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass, doLogOut
   //  ,doLoginCookie
 };

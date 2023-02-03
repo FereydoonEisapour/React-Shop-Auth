@@ -31,6 +31,7 @@ function App() {
             <Route path="/Cart" element={<Cart />}></Route>
             <Route path="/Dashboard" element={<Dashboard />}></Route>
             <Route path='/Login' element={<Login />} ></Route>
+            <Route path='/404' element={<NotFound />} ></Route>
             <Route path='*' element={<NotFound />} ></Route>
           </Routes>
         </div>
