@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
 import { dbUserCartId } from '../Data/data'
 import './../Assets/Styles/Cart.css'
-import {ImgSkeleton} from './'
+import { ImgSkeleton } from './'
 // import ImgSkeleton from './ImgSkeleton'
-const CartItem = ({ img, title, price, id, count }) => {
+const CartItem = ({ img, title, price, id, count, url }) => {
     const { userEmail } = useAuthState()
     const [cartItemCount, setCartItemCount] = React.useState(count)
     React.useEffect(() => {
@@ -42,7 +42,7 @@ const CartItem = ({ img, title, price, id, count }) => {
                 </div>
                 <div className="col-8 d-flex row ">
                     <div className=" mt-3">
-                        <Link to="/details" className="text-decoration-none  fw-bold text-color">
+                        <Link to={`/details/${url}`} className="text-decoration-none  fw-bold text-color">
                             <span>{title}</span>
                         </Link>
                     </div>

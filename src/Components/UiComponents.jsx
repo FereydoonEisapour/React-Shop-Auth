@@ -26,7 +26,7 @@ const ImgSkeleton = ({ img, title, style }) => {
         </>
     );
 };
-const AddButton = ({ title, price, img }) => {
+const AddButton = ({ title, price, img, url }) => {
     const [clicked, setClicked] = React.useState("");
     const [added, setAdded] = React.useState("");
     const [disabled, setDisabled] = React.useState(Boolean);
@@ -35,7 +35,7 @@ const AddButton = ({ title, price, img }) => {
 
     const buttonClick = () => {
         if (userEmail) {
-            dbUserCart(userEmail).add({ id: id, title, price, img, count: 1 });
+            dbUserCart(userEmail).add({ id: id, title, price, img, count: 1, url: url });
         }
         setDisabled(true);
         setClicked("clicked");

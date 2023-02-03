@@ -1,8 +1,7 @@
 import React, { } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { AddButton, Loading } from "../Components";
-import { ImgSkeleton } from "../Components";
+import { AddButton, Loading, ImgSkeleton } from "../Components";
 import { dbPhoneId } from "../Data/data";
 const Details = () => {
     const { id } = useParams()
@@ -45,6 +44,7 @@ const Details = () => {
                                     title={details.title}
                                     price={details.price}
                                     img={details.img}
+                                    url={id}
                                 />
                             </div>
                         </div>

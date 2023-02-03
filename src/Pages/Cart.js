@@ -20,7 +20,8 @@ const Cart = () => {
           title: doc.data().title,
           price: doc.data().price,
           img: doc.data().img,
-          count: doc.data().count
+          count: doc.data().count,
+          url: doc.data().url
         })))
         setLoading(false)
       })
@@ -45,6 +46,7 @@ const Cart = () => {
                     title={item.title}
                     price={item.price}
                     count={item.count}
+                    url={item.url}
                   />)
                 }
               </div>
