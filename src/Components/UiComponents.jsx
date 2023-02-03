@@ -81,7 +81,7 @@ const EmptyCart = () => {
         <div className='text-color'>EmptyCart</div>
     )
 }
-const LoadingCoponent = () => {
+const Loading = () => {
     return (
         <div className="d-flex justify-content-center align-items-center align-content-center">
             <div className="loader loader--style2" title="1">
@@ -104,4 +104,4 @@ const LoadingCoponent = () => {
 }
 
 
-export { EmptyCart, LoadingCoponent, AddButton, ImgSkeleton }
+export { EmptyCart, Loading, AddButton, ImgSkeleton }

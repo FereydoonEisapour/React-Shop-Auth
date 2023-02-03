@@ -1,4 +1,4 @@
-export { EmptyCart, LoadingCoponent, AddButton, ImgSkeleton } from './UiComponents.jsx'
+export { EmptyCart, Loading, AddButton, ImgSkeleton } from './UiComponents.jsx'
 export { default as Header } from './Header';
 export { default as CartItem } from './CartItem';
 export { default as TotalCart } from './TotalCart';

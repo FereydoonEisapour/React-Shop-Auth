@@ -2,7 +2,7 @@ import React from 'react'
 //import { useParams } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
 
-import { CartItem, EmptyCart, TotalCart } from '../Components'
+import { CartItem, EmptyCart, Loading, TotalCart } from '../Components'
 import { dbUserCart } from '../Data/data'
 
 const Cart = () => {
@@ -32,7 +32,7 @@ const Cart = () => {
       {userEmail ?
         <div className="container d-flex row  ">
           {
-            loading ? <div>loading</div> : <div></div>
+            loading ? <Loading /> : <div></div>
           }
           {
             inCart.length > 0 ?
@@ -50,7 +50,9 @@ const Cart = () => {
               </div>
               :
               <div className="col-12  d-flex justify-content-center">
-                <EmptyCart />
+                {
+                  loading === false ? <EmptyCart /> : null
+                }
               </div>
           }
 
