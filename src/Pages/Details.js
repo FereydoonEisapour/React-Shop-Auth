@@ -2,7 +2,7 @@ import React, { } from "react";
 import { Link, useParams } from "react-router-dom";
 
 import { AddButton } from "../Components";
-import ImgSkeleton from "../Components/ImgSkeleton";
+import {ImgSkeleton} from "../Components";
 import { dbPhoneId } from "../Data/data";
 const Details = () => {
     const { id } = useParams()

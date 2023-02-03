@@ -3,8 +3,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //import { AuthProvider, doLoginCookie, useAuthDispatch } from './Contexts/AuthContext';
 import './Assets/Styles/App.css';
 import { Header } from './Components';
-import { Products, Cart, Login, Details, Add, NotFound } from './Pages'
+import { Products, Cart, Login, Details, Add, NotFound ,Dashboard} from './Pages'
 import React from 'react';
+
 //import { getCookie } from './hooks/cookies';
 function App() {
 
@@ -26,9 +27,10 @@ function App() {
           <Routes>
             <Route path='/' element={<Products />} ></Route>
             <Route path='/add' element={<Add />}></Route>
-            <Route path="/details/:id" element={<Details />}></Route>
-            <Route path="/cart" element={<Cart />}></Route>
-            <Route path='/login' element={<Login />} ></Route>
+            <Route path="/Details/:id" element={<Details />}></Route>
+            <Route path="/Cart" element={<Cart />}></Route>
+            <Route path="/Dashboard" element={<Dashboard />}></Route>
+            <Route path='/Login' element={<Login />} ></Route>
             <Route path='*' element={<NotFound />} ></Route>
           </Routes>
         </div>

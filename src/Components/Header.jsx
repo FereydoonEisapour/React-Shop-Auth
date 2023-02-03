@@ -18,7 +18,7 @@ const Header = () => {
       </div>
       <div className="d-flex align-items-center px-1">
         <div className="d-flex">
-          <button type="button" onClick={toggleTheme} className="border border-0 dark-switch">
+          <button type="button" onClick={toggleTheme} className="border border-0 dark-switch px-2">
             <svg className="moon" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"
               strokeWidth="2" width="24" height="24" viewBox="0 0 24 24">
               <defs></defs>
@@ -27,8 +27,8 @@ const Header = () => {
           </button>
           {userEmail ?
             <div className="me-auto mb-2  my-2">
-              <Link to="/cart" className="text-decoration-none px-1  link text-color fw-bold " >
-              Cart
+              <Link to="/Cart" className="text-decoration-none px-1  link text-color fw-bold " >
+                 🛒
               </Link>
               <Link to="/Dashboard" className="text-decoration-none px-1  link text-color fw-bold " >
                 Dashboard

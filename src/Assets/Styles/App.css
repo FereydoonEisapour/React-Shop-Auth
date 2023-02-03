@@ -5,14 +5,14 @@
   --app-container: #f3f6fd;
   --main-color: #f3f6fd;
   --text-color: #000000;
-  ---background-darkmode:#fff
+  ---background-darkmode: #fff;
 }
 
 .dark:root {
   --app-container: #1f1d2b;
   --main-color: #1f1d2b;
   --text-color: #fff;
-  ---background-darkmode:#1b2937
+  ---background-darkmode: #1b2937;
 }
 
 * {
@@ -25,15 +25,16 @@
   background-color: var(--main-color);
 }
 .App {
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--app-container);
   transition: background-color 0.5s ease-in-out;
 }
+
 .main-container {
   background-color: var(--main-color);
 }
-.cart-background{
-  background-color: var( ---background-darkmode) !important;
+.cart-background {
+  background-color: var(---background-darkmode) !important;
 }
 .text-color {
   color: var(--text-color);

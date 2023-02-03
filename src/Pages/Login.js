@@ -32,17 +32,17 @@ const Login = () => {
   }
   if (userEmail) return <Navigate to="/" />;
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 col-12 container-content">
-      <div className="form  col-11 col-md-6 col-lg-4 bg-light p-3 m-3  ">
+    <div className="d-flex justify-content-center align-items-center vh-100 col-12 text-color ">
+      <div className="form  col-11 col-md-6 col-lg-4  p-3 m-3  cart-background">
         <div className="inputs d-flex justify-content-center row  m-4 ">
-          <label htmlFor="email" className="text-color">Email</label>
+          <label htmlFor="email" className="">Email</label>
           <input
             className="m-2 p-1"
             type="email"
             name="email"
             onChange={(e) => emailInputHandler(e)}
           />
-          <label htmlFor="password" className="text-color">Password</label>
+          <label htmlFor="password" className="">Password</label>
           <input
             className="m-2 p-1"
             type="password"
@@ -69,7 +69,7 @@ const Login = () => {
         </div>
         <div className="text-center ">
           {loginModal ? (
-            <button className="btn col-8 " onClick={resetPassword}>reset password</button>
+            <button className="btn col-8  btn-light" onClick={resetPassword}>reset password</button>
           ) : (
             <></>
           )}
@@ -80,8 +80,8 @@ const Login = () => {
               Dont have account
             </button>
           ) : (
-            <button className="btn " onClick={(e) => modalHandler(e)}>
-              <small> have account .Please Login</small>
+            <button className="btn btn-light " onClick={(e) => modalHandler(e)}>
+              <small className="fw-bold"> have account .Please Login</small>
             </button>
           )}
         </div>
