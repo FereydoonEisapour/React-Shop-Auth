@@ -66,7 +66,7 @@ const AddButton = ({ title, price, img, url }) => {
                     disabled={disabled}
                 >
                     <span className="add-to-cart ">Add to cart</span>
-                    <span className="added">Added</span>
+                    <span className="added">in Cart</span>
                     <img src={CartSVG} className="shopping-cart" alt="cart" />
                     <img src={PhoneSVG} className="box" alt="phone" />
                 </button>
