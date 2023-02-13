@@ -69,7 +69,9 @@ function Checkout() {
         }
         return () => { }
     }, [cardType])
-
+    const payButton = () => {
+        
+    }
     return (
         <div className="checkout-container rounded-4 m-4 text-color cart-background px-3 py-5">
             <div className="payment-title">
@@ -197,7 +199,7 @@ function Checkout() {
                 </div>
                 <div className="field-container text-color fw-bold">
                     <label htmlFor="cardnumber">Card Number</label><span id="generatecard"></span>
-                    <input id="cardnumber" type="text" pattern="[0-9]*" inputMode="numeric" maxLength={16} 
+                    <input id="cardnumber" type="text" pattern="[0-9]*" inputMode="numeric" maxLength={16}
                         onChange={checkoutNumberHandler}
                         onClick={() => setFliped(false)}
                     //value={!inputData ? inputData : null}
@@ -219,6 +221,9 @@ function Checkout() {
                         onFocus={() => setFliped(true)}
                     />
                 </div>
+            </div>
+            <div className="checkout-button col-12 d-flex justify-content-center">
+                <button className='btn btn-secondary py-2 px-5 border-0' onClick={payButton} >Pay</button>
             </div>
         </div>
     );

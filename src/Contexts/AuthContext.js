@@ -1,5 +1,7 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
+import { dbUserTotal } from "../Data/data";
 import { auth } from "../Data/Firebase";
 import { getCookie, removeCookie, setCookies } from "../hooks/cookies";
 
@@ -36,11 +38,17 @@ function AuthProvider(props) {
   );
 }
 function doSingUp(dispatch, emailInput, passwordInput) {
+  
   auth
     .createUserWithEmailAndPassword(emailInput, passwordInput)
     .then((result) => {
+      toast.success("Account create success");
       dispatch({
         user: result.user,
+      });
+
+      dbUserTotal(result.user.email).add({
+        total: 0,
       });
       removeCookie('user')
       setCookies('user', result.user.email)

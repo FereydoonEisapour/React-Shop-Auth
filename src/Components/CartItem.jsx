@@ -17,12 +17,12 @@ const CartItem = ({ img, title, price, id, count, url }) => {
     }, [id, userEmail])
 
     const cartItemInc = () => {
-        dbUserCartId(userEmail, id).set({
+        dbUserCartId(userEmail, id).update({
             count: cartItemCount + 1
         }, { merge: true })
     }
     const cartItemDec = () => {
-        dbUserCartId(userEmail, id).set({
+        dbUserCartId(userEmail, id).update({
             count: cartItemCount - 1
         }, { merge: true })
     }

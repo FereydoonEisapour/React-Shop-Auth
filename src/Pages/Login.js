@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { doSingUp, doLogIn, resetPass, useAuthDispatch, useAuthState } from "../Contexts/AuthContext";
 
 const Login = () => {
-  const { userEmail } = useAuthState();
+  const { userEmail, user } = useAuthState();
   const dispatch = useAuthDispatch();
 
   const [loginModal, setLoginModal] = React.useState(true);
@@ -30,7 +30,12 @@ const Login = () => {
   const resetPassword = () => {
     resetPass(dispatch, emailInput)
   }
-  if (userEmail) return <Navigate to="/" />;
+  React.useEffect(() => {
+
+
+  }, [userEmail])
+  if (user) return <Navigate to="/dashboard" />;
+
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 col-12 text-color ">
       <div className="form  col-11 col-md-6 col-lg-4  p-3 m-3  cart-background">

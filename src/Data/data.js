@@ -14,7 +14,10 @@ export const dbUserCart = (userEmail) => {
     const dbUserCart = db.collection(userEmail).doc(userEmail).collection('cart')
     return dbUserCart
 }
-
+export const dbUserTotal = (userEmail) => {
+    const dbUserTotal = db.collection(userEmail).doc(userEmail).collection('total')
+    return dbUserTotal
+}
 export const dbUserCartId = (userEmail, id) => {
     const dbUserCartId = db.collection(userEmail).doc(userEmail).collection('cart').doc(id)
     return dbUserCartId
