@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
-import { dbUserCartId } from '../Data/data'
+import { dbUserCartId, dbUserTotal, dbUserTotalId } from '../Data/data'
 import './../Assets/Styles/Cart.css'
 import { ImgSkeleton } from './'
 // import ImgSkeleton from './ImgSkeleton'
 const CartItem = ({ img, title, price, id, count, url }) => {
     const { userEmail } = useAuthState()
     const [cartItemCount, setCartItemCount] = React.useState(count)
+    const [totalPrice, setTotalPrice] = React.useState()
+    const [totalPriceId, setTotalPriceId] = React.useState()
     React.useEffect(() => {
         dbUserCartId(userEmail, id).onSnapshot(snapshot => {
             if (snapshot.data() !== undefined) {
@@ -20,18 +22,38 @@ const CartItem = ({ img, title, price, id, count, url }) => {
         dbUserCartId(userEmail, id).update({
             count: cartItemCount + 1
         }, { merge: true })
+        dbUserTotalId(userEmail, totalPriceId).update({
+            total: totalPrice + price
+        }, { merge: true })
     }
     const cartItemDec = () => {
         dbUserCartId(userEmail, id).update({
             count: cartItemCount - 1
+        }, { merge: true })
+        dbUserTotalId(userEmail, totalPriceId).update({
+            total: totalPrice - price
         }, { merge: true })
     }
 
     const deleteCartItem = () => {
         setCartItemCount(0)
         dbUserCartId(userEmail, id).delete()
+
+        dbUserTotalId(userEmail, totalPriceId).update({
+            total: totalPrice - price
+        })
     }
 
+
+    React.useEffect(() => {
+        if (userEmail) {
+            dbUserTotal(userEmail).onSnapshot(snapshot => {
+                setTotalPrice(snapshot.docs[0].data().total)
+                setTotalPriceId(snapshot.docs[0].id)
+            })
+
+        }
+    })
     return (
         <div className="container cart-background text-color mb-2 rounded-3">
 

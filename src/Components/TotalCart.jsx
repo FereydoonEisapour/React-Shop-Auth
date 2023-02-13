@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
-import { dbUserCart } from '../Data/data'
+import { dbUserCart, dbUserTotal } from '../Data/data'
 const TotalCart = () => {
     const { userEmail } = useAuthState()
     const [inCartPrice, setInCartPrice] = React.useState([])
+    
     React.useEffect(() => {
         if (userEmail) {
             dbUserCart(userEmail).onSnapshot(snapshot => {
@@ -20,6 +21,7 @@ const TotalCart = () => {
         (previousValue, currentValue) => previousValue + currentValue.total,
         initialValue
     );
+
     return (
         <div className='cart-background text-color py-4 rounded-3 text-center fw-bold'>
             <div className=''>{inCartTotalsPirce}  $</div>

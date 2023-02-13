@@ -3,7 +3,7 @@ import "./../Assets/Styles/Button.css";
 import { useParams } from "react-router-dom";
 import { PhoneSVG, CartSVG } from "./../Assets/Images/svg";
 import { useAuthState } from "../Contexts/AuthContext";
-import { dbUserCart } from "../Data/data";
+import { dbUserCart, dbUserTotal, dbUserTotalId } from "../Data/data";
 
 
 
@@ -32,10 +32,12 @@ const AddButton = ({ title, price, img, url }) => {
     const [disabled, setDisabled] = React.useState(Boolean);
     const { id } = useParams();
     const { userEmail } = useAuthState();
-
+    const [totalPrice, setTotalPrice] = React.useState("")
+    const [totalPriceId, setTotalPriceId] = React.useState("")
     const buttonClick = () => {
         if (userEmail) {
             dbUserCart(userEmail).add({ id: id, title, price, img, count: 1, url: url });
+            dbUserTotalId(userEmail, totalPriceId).update({ total: totalPrice + price }, { merge: true })
         }
         setDisabled(true);
         setClicked("clicked");
@@ -57,6 +59,15 @@ const AddButton = ({ title, price, img, url }) => {
                 });
         }
     }, [id, userEmail]);
+
+    React.useEffect(() => {
+        if (userEmail) {
+            dbUserTotal(userEmail).onSnapshot(snapshot => {
+                 setTotalPrice(snapshot.docs[0].data().total)
+                 setTotalPriceId(snapshot.docs[0].id)
+            })
+        }
+    })
     return (
         <>
             {userEmail ? (
