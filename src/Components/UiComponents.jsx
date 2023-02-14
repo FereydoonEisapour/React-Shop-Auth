@@ -5,8 +5,6 @@ import { PhoneSVG, CartSVG } from "./../Assets/Images/svg";
 import { useAuthState } from "../Contexts/AuthContext";
 import { dbUserCart, dbUserTotal, dbUserTotalId } from "../Data/data";
 
-
-
 const ImgSkeleton = ({ img, title, style }) => {
     const [imgSrc, setImgSrc] = React.useState();
     React.useEffect(() => {
