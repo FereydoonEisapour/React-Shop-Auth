@@ -8,14 +8,13 @@ function Orders() {
     const [orders, setOrders] = React.useState('')
     React.useEffect(() => {
         dbUserOrders(userEmail).onSnapshot(snapshot => {
-            console.log()
             setOrders(snapshot.docs.map(doc => ({
                 id: doc.id,
                 cardNumber: doc.data().cardNumber,
                 cardType: doc.data().cardType,
                 cardName: doc.data().name,
                 price: doc.data().price,
-                timestamp: String(new Date(doc.data().timestamp.seconds * 1000)),
+                timestamp: String(new Date(doc.data().timestamp.seconds * 1000).toLocaleDateString()),
             })))
         })
         return () => { }

@@ -116,7 +116,7 @@ const Loading = () => {
 const OrderItem = ({ cardType, cardNumber, price, cardName, timestamp }) => {
 
     return (
-        <div className="d-flex comp-container rounded-4 ">
+        <div className="d-flex comp-container rounded-4 m-2 p-2 py-3 align-items-center ">
             <div className=" col  text-center ">{timestamp}</div>
             <div className=" col  text-center ">{cardName}</div>
             <div className=" col  text-center ">{cardNumber}</div>

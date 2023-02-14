@@ -108,6 +108,7 @@ function Checkout() {
         }
     }, [userEmail])
 
+    if (totalPrice === 0) navigate('/dashboard')
     return (
         <div className="checkout-container rounded-4 m-4 text-color cart-background px-3 py-5">
             <div className="payment-title">
