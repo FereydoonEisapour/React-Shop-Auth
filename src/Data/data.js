@@ -27,3 +27,8 @@ export const dbUserTotalId = (userEmail, id) => {
     const dbUserTotalId = db.collection(userEmail).doc(userEmail).collection('total').doc(id)
     return dbUserTotalId
 }
+
+export const dbUserOrders = (userEmail) => {
+    const dbUserOrders = db.collection(userEmail).doc(userEmail).collection('orders')
+    return dbUserOrders
+}

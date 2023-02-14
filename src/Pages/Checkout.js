@@ -1,9 +1,19 @@
 import React from 'react';
+import firebase from "firebase/compat/app";
 import '../Assets/Styles/Checkout.css';
 import { cardNumberFormater, cardDateFormater, masker } from '../Functions/CheckoutFunctions'
 import { AmericanExpresSVG, DinersSVG, DiscoverSVG, jcbSVG, MaestroSVG, MasterCardSVG, UnionPaySVG, VisaSVG, EmptySVG } from '../Assets/CheckoutSVG'
+import { useAuthState } from '../Contexts/AuthContext';
+import { dbUserCart, dbUserOrders, dbUserTotal, dbUserTotalId } from '../Data/data';
+import { useNavigate } from 'react-router-dom';
+
 
 function Checkout() {
+    const navigate = useNavigate()
+    const { userEmail } = useAuthState()
+    const [totalPrice, setTotalPrice] = React.useState()
+    const [totalPriceId, setTotalPriceId] = React.useState()
+
     const [cardType, setCardType] = React.useState('')
     const [cardSVG, setCardSVG] = React.useState(EmptySVG)
     const [fliped, setFliped] = React.useState(false)
@@ -69,9 +79,35 @@ function Checkout() {
         }
         return () => { }
     }, [cardType])
+
     const payButton = () => {
-        
+
+        dbUserOrders(userEmail).add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            name: checkoutName,
+            cardNumber: checkoutNumber,
+            cardType: cardType[0],
+            price: totalPrice,
+
+        })
+            .then(() => { dbUserTotalId(userEmail, totalPriceId).update({ total: 0 }) })
+            .then(() => {
+                dbUserCart(userEmail).get()
+                    .then(function (querySnapshot) { querySnapshot.forEach(function (doc) { doc.ref.delete() }) })
+            })
+            .then(() => { navigate('/dashboard') })
+            .catch((error) => { console.log(error) })
+
     }
+    React.useEffect(() => {
+        if (userEmail) {
+            dbUserTotal(userEmail).onSnapshot(snapshot => {
+                setTotalPrice(snapshot.docs[0].data().total)
+                setTotalPriceId(snapshot.docs[0].id)
+            })
+        }
+    }, [userEmail])
+
     return (
         <div className="checkout-container rounded-4 m-4 text-color cart-background px-3 py-5">
             <div className="payment-title">
@@ -223,7 +259,8 @@ function Checkout() {
                 </div>
             </div>
             <div className="checkout-button col-12 d-flex justify-content-center">
-                <button className='btn btn-secondary py-2 px-5 border-0' onClick={payButton} >Pay</button>
+                <button className='btn btn-secondary py-2 px-5 border-0' onClick={payButton}
+                >Pay</button>
             </div>
         </div>
     );

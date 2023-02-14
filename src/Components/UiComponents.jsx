@@ -63,8 +63,8 @@ const AddButton = ({ title, price, img, url }) => {
     React.useEffect(() => {
         if (userEmail) {
             dbUserTotal(userEmail).onSnapshot(snapshot => {
-                 setTotalPrice(snapshot.docs[0].data().total)
-                 setTotalPriceId(snapshot.docs[0].id)
+                setTotalPrice(snapshot.docs[0].data().total)
+                setTotalPriceId(snapshot.docs[0].id)
             })
         }
     })
@@ -113,6 +113,17 @@ const Loading = () => {
         </div>
     )
 }
+const OrderItem = ({ cardType, cardNumber, price, cardName, timestamp }) => {
 
+    return (
+        <div className="d-flex comp-container rounded-4 ">
+            <div className=" col  text-center ">{timestamp}</div>
+            <div className=" col  text-center ">{cardName}</div>
+            <div className=" col  text-center ">{cardNumber}</div>
+            <div className=" col  text-center ">{cardType}</div>
+            <div className=" col  text-center ">{price}</div>
+        </div>
+    )
+}
 
-export { EmptyCart, Loading, AddButton, ImgSkeleton }
+export { EmptyCart, Loading, AddButton, ImgSkeleton, OrderItem }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthState } from '../Contexts/AuthContext'
-import { dbUserCart, dbUserTotal } from '../Data/data'
+import { dbUserCart } from '../Data/data'
 const TotalCart = () => {
     const { userEmail } = useAuthState()
     const [inCartPrice, setInCartPrice] = React.useState([])
