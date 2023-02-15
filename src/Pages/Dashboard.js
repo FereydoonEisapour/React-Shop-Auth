@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { UserInfo } from '../Components'
 import Orders from '../Components/Orders'
 import { useAuthState } from '../Contexts/AuthContext'

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { PhoneSVG, CartSVG } from "./../Assets/Images/svg";
 import { useAuthState } from "../Contexts/AuthContext";
 import { dbUserCart, dbUserTotal, dbUserTotalId } from "../Data/data";
+import { AmericanExpresSVG, DinersSVG, DiscoverSVG, jcbSVG, MaestroSVG, MasterCardSVG, UnionPaySVG, VisaSVG, EmptySVG } from '../Assets/CheckoutSVG'
 
 const ImgSkeleton = ({ img, title, style }) => {
     const [imgSrc, setImgSrc] = React.useState();
@@ -45,14 +46,9 @@ const AddButton = ({ title, price, img, url }) => {
             dbUserCart(userEmail)
                 .where("id", "==", id)
                 .onSnapshot((snapshot) => {
-                    if (typeof snapshot.docs[0] === "undefined") {
-                        setAdded("");
-                    }
+                    if (typeof snapshot.docs[0] === "undefined") { setAdded("") }
                     if (typeof snapshot.docs[0] !== "undefined") {
-                        if (id === snapshot.docs[0].data().id) {
-                            setAdded("inCart");
-                            setDisabled(true);
-                        }
+                        if (id === snapshot.docs[0].data().id) setAdded("inCart"); setDisabled(true);
                     }
                 });
         }
@@ -103,7 +99,6 @@ const Loading = () => {
                             from="0 25 25"
                             to="360 25 25"
                             dur="0.6s"
-
                             repeatCount="indefinite" />
                     </path>
                 </svg>
@@ -112,14 +107,49 @@ const Loading = () => {
     )
 }
 const OrderItem = ({ cardType, cardNumber, price, cardName, timestamp }) => {
+    const [cardSVG, setCardSVG] = React.useState(EmptySVG)
+    React.useEffect(() => {
+        switch (cardType) {
+            case 'american express':
+                setCardSVG(AmericanExpresSVG)
+                break;
+            case 'visa':
+                setCardSVG(VisaSVG)
+                break;
+            case 'diners':
+                setCardSVG(DinersSVG)
+                break;
+            case 'discover':
+                setCardSVG(DiscoverSVG)
+                break;
+            case ('jcb'):
+                setCardSVG(jcbSVG)
+                break;
+            case 'maestro':
+                setCardSVG(MaestroSVG)
+                break;
+            case 'mastercard':
+                setCardSVG(MasterCardSVG)
+                break;
+            case 'unionpay':
+                setCardSVG(UnionPaySVG)
+                break;
+            default:
+                setCardSVG(EmptySVG)
+                break;
+        }
+        return () => { }
+    }, [cardType])
 
     return (
-        <div className="d-flex comp-container rounded-4 m-2 p-2 py-3 align-items-center ">
+        <div className="d-flex comp-container rounded-4 m-2 p-2  align-items-center ">
             <div className=" col  text-center ">{timestamp}</div>
             <div className=" col  text-center ">{cardName}</div>
             <div className=" col  text-center ">{cardNumber}</div>
-            <div className=" col  text-center ">{cardType}</div>
-            <div className=" col  text-center ">{price}</div>
+            <div className=" col  text-center ">
+                <img src={cardSVG} alt="" className='col-3' />
+            </div>
+            <div className=" col  text-center ">{price} $</div>
         </div>
     )
 }

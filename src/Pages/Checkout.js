@@ -7,7 +7,6 @@ import { useAuthState } from '../Contexts/AuthContext';
 import { dbUserCart, dbUserOrders, dbUserTotal, dbUserTotalId } from '../Data/data';
 import { useNavigate } from 'react-router-dom';
 
-
 function Checkout() {
     const navigate = useNavigate()
     const { userEmail } = useAuthState()
@@ -81,14 +80,12 @@ function Checkout() {
     }, [cardType])
 
     const payButton = () => {
-
         dbUserOrders(userEmail).add({
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             name: checkoutName,
             cardNumber: checkoutNumber,
             cardType: cardType[0],
             price: totalPrice,
-
         })
             .then(() => { dbUserTotalId(userEmail, totalPriceId).update({ total: 0 }) })
             .then(() => {
@@ -97,7 +94,6 @@ function Checkout() {
             })
             .then(() => { navigate('/dashboard') })
             .catch((error) => { console.log(error) })
-
     }
     React.useEffect(() => {
         if (userEmail) {
@@ -108,9 +104,10 @@ function Checkout() {
         }
     }, [userEmail])
 
+    if (!userEmail) navigate('/dashboard')
     if (totalPrice === 0) navigate('/dashboard')
     return (
-        <div className="checkout-container rounded-4 m-4 text-color cart-background px-3 py-5">
+        <div className="checkout-container rounded-4 text-color cart-background  mx-4 p-5 ">
             <div className="payment-title">
                 <h1>Payment Information</h1>
             </div>
@@ -239,10 +236,7 @@ function Checkout() {
                     <input id="cardnumber" type="text" pattern="[0-9]*" inputMode="numeric" maxLength={16}
                         onChange={checkoutNumberHandler}
                         onClick={() => setFliped(false)}
-                    //value={!inputData ? inputData : null}
                     />
-                    {/* Input icon card */}
-                    {/* <img src={cardSVG} alt="" id='ccicon' className='ccicon' /> */}
                 </div>
                 <div className="field-container text-color fw-bold">
                     <label htmlFor="expirationdate">Expiration (mm/yy)</label>

@@ -24,10 +24,9 @@ const TotalCart = () => {
 
     return (
         <div className='cart-background text-color py-4 rounded-3 text-center fw-bold'>
-            <div className=''>{inCartTotalsPirce}  $</div>
-            {/* <div className="btn btn-primary mt-3">Checkout</div> */}
+            <div className=''>Total Price : {inCartTotalsPirce}  $</div>
             <div className="py-2">
-                <Link to={`/Cart/Checkout`} className="text-decoration-none text-color link " >Checkout</Link>
+                <Link to={`/Cart/Checkout`} className=" text-color link " > Checkout</Link>
             </div>
         </div>
     )

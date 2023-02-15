@@ -1,6 +1,5 @@
 import React, { } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { AddButton, Loading, ImgSkeleton } from "../Components";
 import { dbPhoneId } from "../Data/data";
 const Details = () => {
@@ -24,11 +23,11 @@ const Details = () => {
                             <ImgSkeleton img={details.img} />
                         </div>
                         <div className=" col-12 col-sm-12 col-md-7 col-lg-7 mt-4 p-3">
-                            <div className="">
+                            <div className="mb-2">
                                 <div>{details.title}</div>
                             </div>
-                            <div className=" d-none d-md-block">
-                                Made By : <span className="h4">{details.company}</span>
+                            <div className=" d-none d-md-block mb-2">
+                                Made By : <span className="h4 ">{details.company}</span>
                             </div>
                             <div className=" d-sm-none d-none d-md-block">
                                 info :
@@ -37,16 +36,15 @@ const Details = () => {
                                 </div>
                             </div>
                             <div className="my-3 d-flex  justify-content-between  ">
-
                                 <div>Price :{details.price} $</div>
+                            </div>
+                            <div className=" my-4 ">
                                 <AddButton
                                     title={details.title}
                                     price={details.price}
                                     img={details.img}
                                     url={id}
                                 />
-                            </div>
-                            <div className="text-center">
                             </div>
                         </div>
                     </div>

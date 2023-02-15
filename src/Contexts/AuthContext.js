@@ -1,6 +1,5 @@
 import React from "react";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
 import { dbUserTotal } from "../Data/data";
 import { auth } from "../Data/Firebase";
 import { getCookie, removeCookie, setCookies } from "../hooks/cookies";
@@ -38,71 +37,37 @@ function AuthProvider(props) {
   );
 }
 function doSingUp(dispatch, emailInput, passwordInput) {
-  
   auth
     .createUserWithEmailAndPassword(emailInput, passwordInput)
     .then((result) => {
       toast.success("Account create success");
-      dispatch({
-        user: result.user,
-      });
-
-      dbUserTotal(result.user.email).add({
-        total: 0,
-      });
+      dispatch({ user: result.user });
+      dbUserTotal(result.user.email).add({ total: 0 });
       removeCookie('user')
       setCookies('user', result.user.email)
     })
-    .catch((error) => {
-      if (error.code === "auth/email-already-in-use") {
-        toast.error("Email alredy in use . Please login ");
-      }
-    });
+    .catch((error) => { if (error.code === "auth/email-already-in-use") toast.error("Email alredy in use . Please login ") })
 }
 function doLogIn(dispatch, emailInput, passwordInput) {
   auth.signInWithEmailAndPassword(emailInput, passwordInput)
     .then((result) => {
-      dispatch({
-        user: result.user,
-        userEmail: result.user.email
-      });
+      dispatch({ user: result.user, userEmail: result.user.email });
       removeCookie('user')
       setCookies('user', result.user.email)
     })
     .catch((error) => {
-      if (error.code === "auth/user-not-found") {
-        toast.error("Email not found , Please Signup");
-      }
+      if (error.code === "auth/user-not-found") { toast.error("Email not found , Please Signup") }
     });
 }
 function resetPass(dispatch, emailInput) {
   auth.sendPasswordResetEmail(emailInput)
-    .then(() => {
-      toast.success("We send reset password link to your Mail");
-    })
+    .then(() => toast.success("We send reset password link to your Mail"))
     .then(removeCookie('user'))
-    .catch((error) => {
-      toast.error(error.code);
-      console.log(error);
-    });
+    .catch((error) => { toast.error(error.code) })
 }
 function doLogOut(dispatch) {
-  dispatch({
-    userEmail: null
-  })
+  dispatch({ userEmail: null })
   removeCookie('user')
 }
-if (getCookie !== "") {
-  initialState.userEmail = getCookie('user')
-}
-//function doLoginCookie(dispatch, userCookie) {
-// initialState.userEmail = userCookie
-// dispatch({
-//   // user: userCookie,
-//   userEmail: userCookie
-// })
-//}
-export {
-  AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass, doLogOut
-  //  ,doLoginCookie
-};
+if (getCookie !== "") initialState.userEmail = getCookie('user')
+export { AuthProvider, useAuthState, useAuthDispatch, doSingUp, doLogIn, resetPass, doLogOut };

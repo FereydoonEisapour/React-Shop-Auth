@@ -8,10 +8,6 @@ const setCookies = (cookieName, user) => {
         path: '/'
     })
 }
-const getCookie = (cookieName) => {
-    return Cookies.get(cookieName)
-}
-const removeCookie = (cookieName) => {
-    Cookies.remove(cookieName)
-}
+const getCookie = (cookieName) => { return Cookies.get(cookieName) }
+const removeCookie = (cookieName) => { Cookies.remove(cookieName) }
 export { setCookies, getCookie, removeCookie }

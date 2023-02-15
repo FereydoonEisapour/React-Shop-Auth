@@ -1,6 +1,5 @@
 import db from "./Firebase"
 
-
 export const dbPhones = () => {
     const dbPhones = db.collection('shop').doc('shop').collection('phones')
     return dbPhones

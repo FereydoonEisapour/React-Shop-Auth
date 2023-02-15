@@ -26,7 +26,6 @@ function cardNumberFormater(value) {
     for (let i = 0, len = match.length; i < len; i += 4) {
         parts.push(match.substring(i, i + 4))
     }
-
     if (parts.length) {
         return parts.join(' ')
     } else {

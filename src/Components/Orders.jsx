@@ -25,14 +25,13 @@ function Orders() {
             {orders ? orders.map(order => (
                 <OrderItem
                     key={order.id}
-                    // id={order.id}
                     cardName={order.cardName}
                     cardNumber={order.cardNumber}
                     cardType={order.cardType}
                     price={order.price}
                     timestamp={order.timestamp}
                 />
-            )) : ''}
+            )) : null}
         </div>
     )
 }
