@@ -34,7 +34,7 @@ const Cart = () => {
           }
           {
             inCart.length > 0 ?
-              <div className="col-12 col-md-8 ">
+              <div className="col-12 col-md-9 ">
                 {
                   inCart.map(item => <CartItem
                     key={item.id}
@@ -54,7 +54,7 @@ const Cart = () => {
                 }
               </div>
           }
-          <div className="col-12  col-md-4">
+          <div className="col-12  col-md-3">
             {inCart.length > 0 ? <TotalCart /> : ""}
           </div>
         </div>

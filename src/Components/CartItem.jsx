@@ -40,7 +40,6 @@ const CartItem = ({ img, title, price, id, count, url }) => {
         dbUserTotalId(userEmail, totalPriceId).update({ total: totalPrice - price })
     }
 
-
     React.useEffect(() => {
         if (userEmail) {
             dbUserTotal(userEmail).onSnapshot(snapshot => {
@@ -49,24 +48,52 @@ const CartItem = ({ img, title, price, id, count, url }) => {
             })
         }
     })
+    //recycle bin icon svg code in darkmode
     return (
         <div className="container cart-background text-color mb-2 rounded-3">
-            <div className="row  d-flex w-75 ">
-                <div className="col-4 d-flex align-items-center ">
+            <div className="inCart-container d-flex  ">
+                <div className=" col-2 d-flex align-items-center ">
                     <ImgSkeleton className="col-11 p-2" style={`skeleton-img-cart card-img-cart card-img`} img={img} />
                 </div>
-                <div className="col-8 d-flex row ">
-                    <div className=" mt-3 ">
+                <div className="col-10 d-flex align-items-center justify-content-between text-center">
+                    <div className=" col-4  inCart-title">
                         <Link to={`/details/${url}`} className="text-decoration-none  fw-bold text-color">
                             <span>{title}</span>
                         </Link>
                     </div>
-                    <div className=" ">
-                        <span className='fw-bold '> Price :</span>
-                        <span className='fw-bold px-1'>{price}</span> $
+                    <div className="col-3 ">
+                        <span className='fw-bold '>{price}</span> $
                     </div>
-                    <div className=" ">
+
+                    <div className="cart-button-container   col-3  justify-content-center ">
                         {cartItemCount === 1 ?
+                            <button className="pqt-del comp-container" onClick={deleteCartItem}>
+                                <svg className='' width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                </svg>
+                            </button>
+                            :
+                            <button className="pqt-minus" onClick={cartItemDec}>-</button>
+                        }
+                        <div className="cart-button-count">
+                            <span className="cart-num">{cartItemCount} </span>
+                        </div>
+                        <button className="pqt-plus" onClick={cartItemInc}>+</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default CartItem
+
+
+
+{/* {cartItemCount === 1 ?
                             <button
                                 onClick={deleteCartItem}
                                 className="badge text-primary border-0  p-2 bg-white text-dark"
@@ -86,12 +113,4 @@ const CartItem = ({ img, title, price, id, count, url }) => {
                             className="badge text-primary border-0  p-2 bg-white text-dark"
                             style={{ fontSize: "0.8rem" }}  >
                             ➕
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default CartItem
+                        </button> */}

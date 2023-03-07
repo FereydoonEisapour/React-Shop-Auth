@@ -253,6 +253,11 @@ function Checkout() {
                     />
                 </div>
             </div>
+            <div className="col-12 d-flex justify-content-center">
+                <div className="">
+                 Price to pay    {totalPrice}
+                </div>
+            </div>
             <div className="checkout-button col-12 d-flex justify-content-center">
                 <button className='btn btn-secondary py-2 px-5 border-0' onClick={payButton}
                 >Pay</button>
